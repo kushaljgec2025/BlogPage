@@ -119,6 +119,7 @@ export class Service {
         }
     }
     async deleteFile(fileId) {
+        if (fileId === "") return true;
         try {
             await this.bucket.deleteFile(
                 conf.appWriteBucketId,

@@ -24,9 +24,12 @@ function LogoutBtn() {
   };
 
   return (
-    <div>
-      <Link onClick={handleLogout}>
-        <FiLogOut className="text-xl mr-5" />
+    <div className=" rounded-full bg-slate-300 text-red-400 p-2 font-bold ">
+      <Link
+        onClick={handleLogout}
+        className=" flex justify-center items-center"
+      >
+        <FiLogOut className="text-xl  " />
       </Link>
     </div>
   );

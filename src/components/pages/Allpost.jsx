@@ -17,10 +17,10 @@ function Allpost() {
 
   return (
     <div>
-      <Container>
-        <div className="w-full flex flex-row">
+      <Container className="justyfy-around">
+        <div className="w-full flex flex-row justify-between items-center">
           {posts.map((post) => (
-            <div key={post.$id} className="">
+            <div key={post.$id} className="block">
               <Postcard {...post} />
             </div>
           ))}

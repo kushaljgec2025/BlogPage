@@ -30,8 +30,9 @@ export default function Post() {
   const deletePost = () => {
     service.deletepost(post.$id).then((status) => {
       console.log(status);
+      console.log(post.feature_img);
       if (status) {
-        service.deleteFile(post.feature_img);
+        if (post.feature_img !== null) service.deleteFile(post.feature_img);
         navigate("/");
       }
     });
@@ -39,9 +40,11 @@ export default function Post() {
   const getfile = async () => {
     console.log("hi");
     try {
-      const file = await service.getFileOriginal(post.feature_img);
-      console.log(file);
-      setImghref(file.href);
+      if (post.feature_img) {
+        const file = await service.getFileOriginal(post.feature_img);
+        console.log(file);
+        setImghref(file.href);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -52,7 +55,10 @@ export default function Post() {
       <Container>
         <div className="w-full flex justify-center mb-4 relative border bg-white backdrop-blur-md bg-opacity-20 rounded-xl p-2">
           <img
-            src={imghref}
+            src={
+              imghref ||
+              "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            }
             alt={post.title}
             className="rounded-3xl aspect-[8/4] object-cover w-full h-full"
           />
@@ -75,10 +81,10 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+        <div className="w-full mb-6 bg-white text-gray p-10 rounded-lg">
+          <h1 className="text-3xl font-bold text-blue my-4">{post.title}</h1>
+          <div className="">{parse(post.content)}</div>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;

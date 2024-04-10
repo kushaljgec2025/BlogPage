@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index";
 import service from "../../appwrite/config";
@@ -8,6 +8,7 @@ import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { IoMdPaperPlane } from "react-icons/io";
 
 function Postform({ post }) {
+  const [uploaded, setUploaded] = useState(false);
   console.log(post);
   const navigate = useNavigate();
   const usedata = useSelector((state) => state.auth.userData);
@@ -29,32 +30,33 @@ function Postform({ post }) {
       if (file) {
         service.deleteFile(post.feature_img);
       }
-      console.log(file.$id);
+
       const dbpost = await service.updatePost(post.$id, {
         ...data,
-        feature_img: file?.$id,
+        feature_img: file ? file.$id : post.feature_img,
       });
       console.log(dbpost);
       if (dbpost) {
         navigate(`/post/${dbpost.$id}`);
       }
     } else {
-      const file = await service.uploadFile(data?.img[0]);
+      const file = data.img[0] ? await service.uploadFile(data.img[0]) : null;
       if (file) {
         const fileid = file.$id;
         console.log(data);
         data.feautureImg = fileid;
-
-        const dbpost = await service.createPosts(data.slug, {
-          title: data.title,
-          content: data.content,
-          feature_img: data.feautureImg,
-          status: data.status,
-          userId: usedata.$id,
-          // Assuming 'usedata' is defined and contains '$id'
-        });
-        if (dbpost) navigate(`/post/${dbpost.$id}`);
+      } else {
+        data.feautureImg = "";
       }
+      const dbpost = await service.createPosts(data.slug, {
+        title: data.title,
+        content: data.content,
+        feature_img: data.feautureImg,
+        status: data.status,
+        userId: usedata.$id,
+        // Assuming 'usedata' is defined and contains '$id'
+      });
+      if (dbpost) navigate(`/post/${dbpost.$id}`);
     }
   };
 
@@ -107,9 +109,7 @@ function Postform({ post }) {
             <input
               type="file"
               accept="image/*"
-              {...register("img", {
-                required: !post,
-              })}
+              {...register("img")}
               className="  cursor-pointer w-full bg-slate-300 rounded-xl "
             />
           </div>

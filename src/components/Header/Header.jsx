@@ -41,7 +41,7 @@ export default function Header() {
             <Logo />
           </Link>
         </div>
-        <div className="w-[50vw]">
+        <div className="w-[50vw] ">
           <ul className="flex w-full items-center space-x-4 shadow-md bg-white backdrop backdrop-blur-md bg-opacity-50 px-4 py-2  rounded-full justify-between">
             {navItem.map((item, index) => {
               return item.active ? (
@@ -50,16 +50,16 @@ export default function Header() {
                   key={index}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-slate-300 p-2 w-[20%] rounded-full text-gray font-bold"
+                      ? "bg-slate-300 px-2 w-[20%] rounded-full text-gray font-bold"
                       : "w-[20%] text-gray hover:font-semibold transition-all duration-200"
                   }
                 >
-                  <span>{item.name}</span>
+                  <p className="my-2">{item.name}</p>
                 </NavLink>
               ) : null;
             })}
             {authstatus && (
-              <li className="text-red-400 font-bold">
+              <li className="">
                 <Logoutbtn />
               </li>
             )}

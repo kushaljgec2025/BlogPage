@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const [Authstatus, setAuthstatus] = useState(false);
   const Authstatus = useSelector((state) => state.auth.status);
   useEffect(() => {
@@ -12,12 +13,13 @@ function Home() {
       .getPosts()
       .then((response) => {
         setPosts(response.documents);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
+  if (loading && Authstatus) return <div>Loading...</div>;
   if (posts.length === 0) {
     if (Authstatus) return <div>No Post Yet</div>;
     return (
