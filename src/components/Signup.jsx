@@ -38,8 +38,8 @@ function Signup() {
       {/* <div className="relative top-0 right-0">
         <Bg />
       </div> */}
-      <Company_tag />
-      <div className=" m-auto ring-1 ring-slate-300 bg-white text-gray p-6  rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw]  inset-0 ">
+      <Company_tag className="hidden sm:block" />
+      <div className=" m-auto  ring-1 ring-slate-300 bg-white text-gray p-6  rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw]  inset-0 ">
         <div>
           <h2 className="font-bold text-3xl">Create Account</h2>
         </div>
@@ -82,7 +82,7 @@ function Signup() {
                 required: true,
               })}
             />
-            <Button type="submit">Signup</Button>
+            <Button type="submit">Sign up</Button>
           </div>
         </form>
       </div>

@@ -31,7 +31,7 @@ function Login() {
   };
   return (
     <div className="flex flex-row flex-wrap-reverse ">
-      <Company_tag />
+      <Company_tag className="hidden sm:block" />
       <div className="ring-1 ring-slate-300 p-6 bg-white text-gray rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw] m-auto ">
         <div>
           <h2 className="font-bold text-3xl">Log in</h2>
@@ -64,7 +64,7 @@ function Login() {
             />
           </div>
           <Button className="bg-slate-300 " type="submit">
-            Sign in
+            Log in
           </Button>
 
           <p>

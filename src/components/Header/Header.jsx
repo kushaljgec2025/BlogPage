@@ -4,7 +4,9 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import Hamburger from "hamburger-react";
 export default function Header() {
+  const [isOpen, setOpen] = React.useState(false);
   const authstatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const navItem = [
@@ -36,13 +38,18 @@ export default function Header() {
       className={`backdrop-filter backdrop-blur-md bg-opacity-10 fixed  top-0 left-0  z-10`}
     >
       <nav className="flex w-full items-center justify-between  py-4">
-        <div className="flex justify-between ">
+        <div className={` justify-between sm:flex ${!isOpen ? "" : "hidden"}`}>
           <Link to="/" className="text-2xl font-bold text-gray-800">
             <Logo />
           </Link>
         </div>
-        <div className="w-[50vw] ">
-          <ul className="flex w-full items-center space-x-4 shadow-md bg-white backdrop backdrop-blur-md bg-opacity-50 px-4 py-2  rounded-full justify-between">
+        <div className="sm:hidden block">
+          <Hamburger toggled={isOpen} toggle={setOpen} />
+        </div>
+        <div
+          className={`sm:w-[50vw] ${isOpen ? "w-full " : " hidden"} sm:block`}
+        >
+          <ul className="flex w-full items-center  shadow-md bg-white backdrop backdrop-blur-md bg-opacity-50 px-4 py-2  rounded-full justify-between">
             {navItem.map((item, index) => {
               return item.active ? (
                 <NavLink
@@ -50,8 +57,8 @@ export default function Header() {
                   key={index}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-slate-300 px-2 w-[20%] rounded-full text-gray font-bold"
-                      : "w-[20%] text-gray hover:font-semibold transition-all duration-200"
+                      ? "bg-slate-300 sm:w-[20%] w-[30%]  rounded-full text-gray font-bold"
+                      : " text-gray sm:w-[20%] w-[30%] hover:font-semibold transition-all duration-200"
                   }
                 >
                   <p className="my-2">{item.name}</p>

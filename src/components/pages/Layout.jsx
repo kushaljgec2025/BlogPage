@@ -30,9 +30,9 @@ function Layout() {
 
   return (
     !loading && (
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full h-screen">
         <Header />
-        <div className="flex flex-col w-[80%]   mt-[10vw]  ">
+        <div className="flex flex-col w-[80%] h-full mt-[18vh]  justify-normal items-center  ">
           <main className="  ">
             <Outlet />
           </main>
