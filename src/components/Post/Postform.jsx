@@ -9,7 +9,7 @@ import { IoMdPaperPlane } from "react-icons/io";
 
 function Postform({ post }) {
   const [uploaded, setUploaded] = useState(false);
-  console.log(post);
+
   const navigate = useNavigate();
   const usedata = useSelector((state) => state.auth.userData);
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -25,8 +25,7 @@ function Postform({ post }) {
   const submit = async (data) => {
     if (post) {
       const file = data.img[0] ? await service.uploadFile(data.img[0]) : null;
-      console.log(file);
-      console.log(post.feature_img);
+
       if (file) {
         service.deleteFile(post.feature_img);
       }
@@ -35,7 +34,7 @@ function Postform({ post }) {
         ...data,
         feature_img: file ? file.$id : post.feature_img,
       });
-      console.log(dbpost);
+
       if (dbpost) {
         navigate(`/post/${dbpost.$id}`);
       }
@@ -43,7 +42,7 @@ function Postform({ post }) {
       const file = data.img[0] ? await service.uploadFile(data.img[0]) : null;
       if (file) {
         const fileid = file.$id;
-        console.log(data);
+
         data.feautureImg = fileid;
       } else {
         data.feautureImg = "";
@@ -61,15 +60,38 @@ function Postform({ post }) {
   };
 
   const slugTransform = useCallback((value) => {
-    if (value && typeof value === "string")
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
+    if (value && typeof value === "string") {
+      // Trim and convert to lowercase
+      let slug = value.trim().toLowerCase();
+
+      // Replace special characters with hyphens
+      slug = slug.replace(/[^a-zA-Z0-9\s]+/g, "-");
+
+      // Remove leading and trailing hyphens
+      slug = slug.replace(/^\-+|\-+$/g, "");
+
+      // Ensure the slug is no longer than 36 characters
+      if (slug.length > 36) {
+        slug = slug.substring(0, 36); // Truncate to 36 characters
+      }
+
+      // Replace remaining spaces with hyphens
+      slug = slug.replace(/\s+/g, "-");
+
+      // Validate the slug to ensure it starts with a valid character
+      // (a-z, A-Z, 0-9, period, hyphen, underscore)
+      const firstChar = slug.charAt(0);
+      if (!/^[a-zA-Z0-9._-]+$/.test(firstChar)) {
+        // Replace the first character if it's not valid
+        slug = "x" + slug.substring(1); // Replace with 'x' or another valid character
+      }
+
+      return slug;
+    }
 
     return "";
   }, []);
+
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {

@@ -80,7 +80,7 @@ export class Service {
         }
     }
     async getPost(slug) {
-        console.log(slug);
+
         try {
             const result = await this.databases.getDocument(
                 conf.appWriteDatabaseId,

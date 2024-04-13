@@ -9,7 +9,7 @@ import { TypeAnimation } from "react-type-animation";
 
 function Company_tag({ className }) {
   const location = useLocation();
-  console.log(location.pathname);
+
   return (
     <div
       className={`company ${className}  lg:basis-1/2 text-white bg-black flex flex-col justify-center items-center gap-4 py-4 backdrop backdrop-blur-sm bg-opacity-40 rounded-lg px-8`}

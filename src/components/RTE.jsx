@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Controller } from "react-hook-form";
 export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className=" ">
+    <div className="text-left font-bold w-full ">
       {label && <label className="text-gray">{label}</label>}
       <Controller
         name={name || "content"}

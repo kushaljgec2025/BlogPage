@@ -8,7 +8,6 @@ function Editpost() {
   const { slug } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(slug); //its not working
     if (slug) {
       service.getPost(slug).then((response) => {
         if (response.$id) {

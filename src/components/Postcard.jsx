@@ -1,6 +1,7 @@
 import React from "react";
 import service from "../appwrite/config";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import parse from "html-react-parser";
 import {
   AiOutlineLike,
@@ -8,10 +9,11 @@ import {
   AiOutlineUser,
   AiOutlineEye,
 } from "react-icons/ai";
-function Postcard({ $id, title, content, feature_img }) {
+function Postcard({ $id, title, content, feature_img, userId }) {
   const navigate = useNavigate();
   const parsedContent = parse(content);
-  console.log(parsedContent);
+  console.log(userId, "userid");
+
   let firstPTagText = "";
   if (Array.isArray(parsedContent)) {
     for (let i = 0; i < parsedContent.length; i += 2) {
@@ -55,13 +57,13 @@ function Postcard({ $id, title, content, feature_img }) {
             </span>
           </div>
         </div>
-        <div className="flex flex-row mt-2  justify-between ">
+        <div className="flex flex-row   justify-between ">
           <div>
-            <button className="flex flex-col  gap-2 bg-slate-300 p-2 rounded-md shadow-lg">
-              <div className="flex justify-center items-center gap-2">
-                <AiOutlineUser />
+            <button className="flex flex-col  gap-2 bg-slate-300 p-2 rounded-md shadow-lg ">
+              <div className="flex justify-center items-center gap-2 ">
+                <AiOutlineUser className="border-2 border-blue text-blue rounded-full text-xl" />
 
-                <p className="text-blue">User</p>
+                <p className="text-blue">Author</p>
               </div>
             </button>
           </div>

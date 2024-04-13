@@ -13,13 +13,12 @@ function Login() {
   const [error, setError] = useState(null);
 
   const login = async (data) => {
-    console.log("userdata");
     setError(null);
     try {
       const session = await authService.login(data);
       if (session) {
         const userdata = await authService.getCurrentUser();
-        console.log(userdata);
+
         userdata
           ? dispatch(authLogin({ userData: userdata }))
           : setError("User data not found");

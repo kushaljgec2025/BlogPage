@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { TbEditCircle } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
+
 import {
   AiOutlineLike,
   AiOutlineComment,
@@ -14,8 +15,10 @@ import {
 } from "react-icons/ai";
 
 export default function Post() {
+  const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(null);
   const [imghref, setImghref] = useState(null);
+
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -32,11 +35,9 @@ export default function Post() {
       });
     } else navigate("/");
   }, [slug, navigate]);
-  console.log(post);
+
   const deletePost = () => {
     service.deletepost(post.$id).then((status) => {
-      console.log(status);
-      console.log(post.feature_img);
       if (status) {
         if (post.feature_img !== null) service.deleteFile(post.feature_img);
         navigate("/");
@@ -44,11 +45,11 @@ export default function Post() {
     });
   };
   const getfile = async () => {
-    console.log("hi");
     try {
       if (post.feature_img) {
         const file = await service.getFileOriginal(post.feature_img);
-        console.log(file);
+        setLoading(false);
+
         setImghref(file.href);
       }
     } catch (err) {
@@ -73,13 +74,13 @@ export default function Post() {
           {isAuthor && (
             <div className="absolute right-6 top-6 flex gap-4 ">
               <Link to={`/edit-post/${post.$id}`}>
-                <button className="bg-gray w-20  flex items-center justify-evenly  py-2 rounded-lg">
+                <button className="bg-gray hover:bg-slate-700 duration-300 w-20  flex items-center justify-evenly  py-2 rounded-lg">
                   Edit <TbEditCircle />
                 </button>
               </Link>
               <button
                 onClick={deletePost}
-                className="bg-red-400 flex w-20 items-center justify-evenly  py-2 rounded-lg"
+                className="bg-red-400 hover:bg-red-500 duration-300 flex w-20 items-center justify-evenly  py-2 rounded-lg"
               >
                 Delete
                 <MdDeleteOutline />
@@ -89,18 +90,25 @@ export default function Post() {
         </div>
         <div className="w-full mb-6 bg-white text-gray p-10 rounded-lg">
           <h1 className="text-3xl font-bold text-blue my-4">{post.title}</h1>
-          <div className="sm:w-full w-[70vw]">{parse(post.content)}</div>
-        </div>
-        <div className="basis-1/3  flex gap-2 justify-around ">
-          <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center ">
-            <AiOutlineLike />
-          </button>
-          <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-            <AiOutlineComment />
-          </button>
-          <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-            <AiOutlineEye />
-          </button>
+          <h1 className="text-left text-blue flex justify-start items-center gap-4  ">
+            Author :
+            <AiOutlineUser />
+            {/* {Author} */}
+          </h1>
+          <div className="sm:w-full text-left w-[70vw]">
+            {parse(post.content)}
+          </div>
+          <div className="basis-1/3  flex gap-2 justify-around  rounded-lg mt-4">
+            <button className="btn text-xl  bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center ">
+              <AiOutlineLike />
+            </button>
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
+              <AiOutlineComment />
+            </button>
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
+              <AiOutlineEye />
+            </button>
+          </div>
         </div>
       </div>
     </div>

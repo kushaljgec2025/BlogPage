@@ -24,7 +24,7 @@ function LogoutBtn() {
   };
 
   return (
-    <div className=" rounded-full bg-slate-300 text-red-400 p-3 font-bold ring-red-500 ring-1 ">
+    <div className=" rounded-full  bg-red-400 hover:bg-red-500 duration-300 p-3 font-bold cursor-pointer   ">
       <Link
         onClick={handleLogout}
         className=" flex justify-center items-center"
