@@ -24,7 +24,7 @@ function Postcard({ $id, title, content, feature_img }) {
 
   return (
     <div className="bg-white rounded-xl w-full  flex justify-start items-start md:flex-row flex-col gap-6 p-4">
-      <Link to={`/post/${$id}`} className=" grow md:max-w-sm">
+      <Link to={`/post/${$id}`} className="md:max-w-[20vw] w-full">
         <div className="w-full group">
           <img
             src={
@@ -33,11 +33,11 @@ function Postcard({ $id, title, content, feature_img }) {
                 : "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             }
             alt={title}
-            className="md:max-w-sm  w-full group aspect-square object-cover rounded-xl"
+            className="  w-full group aspect-square object-cover rounded-xl"
           />
         </div>
       </Link>
-      <div className="  flex flex-col justify-between">
+      <div className=" md:h-[20vw] flex flex-col justify-between">
         <div className="flex flex-col   text-start">
           <h2 className="text-xl font-bold text-blue">{title}</h2>
           {/* Display the text content of the first <p> tag */}
@@ -55,25 +55,24 @@ function Postcard({ $id, title, content, feature_img }) {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-row mt-2  justify-between ">
           <div>
-            <h1 className="text-blue text-left">Author</h1>
             <button className="flex flex-col  gap-2 bg-slate-300 p-2 rounded-md shadow-lg">
-              <div className="flex">
+              <div className="flex justify-center items-center gap-2">
                 <AiOutlineUser />
 
-                <p>User</p>
+                <p className="text-blue">User</p>
               </div>
             </button>
           </div>
-          <div className="flex gap-2 justify-around md:justify-normal">
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg">
+          <div className="basis-1/3  flex gap-2 justify-around ">
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center ">
               <AiOutlineLike />
             </button>
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg">
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
               <AiOutlineComment />
             </button>
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg">
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
               <AiOutlineEye />
             </button>
           </div>
