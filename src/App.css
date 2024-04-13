@@ -1,13 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
+.hero {
   background-image: url("https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-size: cover;
   background-attachment: fixed;
-
-  background-repeat: no-repeat;
+  background-position: center; /* Added background-position property */
 }
+
 #root {
   margin: 0 auto;
   width: 100%;

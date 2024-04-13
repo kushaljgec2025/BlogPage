@@ -49,7 +49,7 @@ export default function Header() {
         <div
           className={`sm:w-[50vw] ${isOpen ? "w-full " : " hidden"} sm:block`}
         >
-          <ul className="flex w-full items-center  shadow-md bg-white backdrop backdrop-blur-md bg-opacity-50 px-4 py-2  rounded-full justify-between">
+          <ul className="flex w-full items-center  shadow-md bg-white px-4 py-2  rounded-full justify-between">
             {navItem.map((item, index) => {
               return item.active ? (
                 <NavLink

@@ -29,12 +29,12 @@ function Home() {
     );
   }
   return (
-    <div className="container">
-      <Container className={`new`}>
+    <div className="container ">
+      <div className="flex flex-col justify-center items-center gap-10">
         {posts?.map((post) => (
           <Postcard key={post.$id} {...post} />
         ))}
-      </Container>
+      </div>
     </div>
   );
 }

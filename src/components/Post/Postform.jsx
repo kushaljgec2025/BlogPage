@@ -83,8 +83,8 @@ function Postform({ post }) {
   }, [watch, setValue, slugTransform]);
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <div className="flex items-center ">
-        <div className="flex flex-col basis-1/2 gap-[5vw] m-4">
+      <div className="flex items-center md:flex-row flex-col w-full ">
+        <div className="flex flex-col basis-1/2 gap-[5vw] m-4 ">
           <Input
             label="Title"
             placeholder="Enter your title"
