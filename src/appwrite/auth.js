@@ -73,8 +73,8 @@ export class AuthService {
     googleauth() {
         try {
             return this.account.createOAuth2Session("google",
-                'http://localhost:5173/',
-                "http://localhost:5173/fail"
+                'https://blog-page-two-kohl.vercel.app/',
+                "https://blog-page-two-kohl.vercel.app/fail"
             );
         } catch (error) {
             console.error("Error during google auth:", error);
