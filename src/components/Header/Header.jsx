@@ -31,6 +31,11 @@ export default function Header() {
       slug: "/add-post",
       active: authstatus,
     },
+    {
+      name: "Profile",
+      slug: "/user",
+      active: authstatus,
+    },
   ];
 
   return (

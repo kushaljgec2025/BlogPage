@@ -9,6 +9,7 @@ import Createaccount from "./components/pages/Createaccount.jsx";
 import Addpost from "./components/pages/Addpost.jsx";
 import Editpost from "./components/pages/Editpost.jsx";
 import Home from "./components/pages/Home.jsx";
+import User from "./components/pages/User.jsx";
 import Loginaccount from "./components/pages/Loginaccount.jsx";
 import Post from "./components/pages/Post.jsx";
 import AllPost from "./components/pages/Allpost.jsx";
@@ -53,6 +54,15 @@ const router = createBrowserRouter([
           <Authlayout authentication>
             {" "}
             <Addpost />
+          </Authlayout>
+        ),
+      },
+      {
+        path: "/user",
+        element: (
+          <Authlayout authentication>
+            {" "}
+            <User />
           </Authlayout>
         ),
       },
