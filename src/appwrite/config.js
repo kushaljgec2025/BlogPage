@@ -44,7 +44,7 @@ export class Service {
 
 
     }
-    async updatePost(slug, { title, content, feature_img, status, username }) {
+    async updatePost(slug, { title, content, feature_img, status, username, like }) {
         try {
             const result = await this.databases.updateDocument(
                 conf.appWriteDatabaseId,
@@ -55,7 +55,8 @@ export class Service {
                     content,
                     feature_img,
                     status,
-                    username
+                    username,
+                    like
 
                 }
             )
@@ -101,7 +102,7 @@ export class Service {
                 conf.appWriteCollectionId,
                 // [Query.equal("status", "active")]
             );
-            console.log(result);
+
             return result;
         } catch (e) {
             console.log(e);

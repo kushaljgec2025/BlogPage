@@ -12,8 +12,8 @@ import {
 function Postcard({ $id, title, content, feature_img, userId, username }) {
   const navigate = useNavigate();
   const parsedContent = parse(content);
-  console.log(userId, "userid");
 
+  const usedata = useSelector((state) => state.auth.userData);
   let firstPTagText = "";
   if (Array.isArray(parsedContent)) {
     for (let i = 0; i < parsedContent.length; i += 2) {
@@ -63,13 +63,14 @@ function Postcard({ $id, title, content, feature_img, userId, username }) {
               <div className="flex justify-center items-center gap-2 ">
                 <AiOutlineUser className="border-2 border-blue text-blue rounded-full text-xl" />
 
-                <p className="text-blue">{username || "Anonymus"}</p>
+                <p className="text-blue text-xs">{username || "Anonymus"}</p>
               </div>
             </button>
           </div>
           <div className="basis-1/3  flex gap-2 justify-around ">
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center ">
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-15 flex  items-center ">
               <AiOutlineLike />
+              <p className="text-xs "> {usedata.like || 0}</p>
             </button>
             <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
               <AiOutlineComment />

@@ -12,7 +12,7 @@ export class AuthService {
             .setEndpoint(conf.appWriteUrl)
             .setProject(conf.appWriteProjectId);
         this.account = new Account(this.client);
-        console.log(this.account);
+
 
 
 
@@ -70,7 +70,17 @@ export class AuthService {
             throw error;
         }
     }
-
+    googleauth() {
+        try {
+            return this.account.createOAuth2Session("google",
+                'http://localhost:5173/',
+                "http://localhost:5173/fail"
+            );
+        } catch (error) {
+            console.error("Error during google auth:", error);
+            throw error;
+        }
+    }
 
 }
 

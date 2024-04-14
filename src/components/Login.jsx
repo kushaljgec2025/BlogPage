@@ -6,6 +6,8 @@ import { login as authLogin } from "../store/authSlice";
 import { Button, Input } from "../components/index";
 import { useForm } from "react-hook-form";
 import { Company_tag } from "../components/index";
+import { FcGoogle } from "react-icons/fc";
+
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ function Login() {
   };
   return (
     <div className="flex flex-row flex-wrap-reverse ">
-      <Company_tag className="hidden sm:block" />
+      <Company_tag className="hidden md:block" />
       <div className="ring-1 ring-slate-300 p-6 bg-white text-gray rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw] m-auto ">
         <div>
           <h2 className="font-bold text-3xl">Log in</h2>
@@ -65,6 +67,15 @@ function Login() {
           <Button className="bg-slate-300 " type="submit">
             Log in
           </Button>
+          <div
+            className="bg-slate-300 flex justify-center items-center gap-4 px-2 py-1 rounded-full mx-2 cursor-pointer"
+            onClick={() => {
+              authService.googleauth();
+            }}
+          >
+            <FcGoogle size={32} />
+            <p>Log in with Google</p>
+          </div>
 
           <p>
             <h2>Have not any Account</h2>

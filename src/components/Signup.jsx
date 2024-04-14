@@ -7,6 +7,8 @@ import { Button, Input } from "../components/index";
 import { useForm } from "react-hook-form";
 import { Bg } from "../components/index";
 import { Company_tag } from "../components/index";
+import { FcGoogle } from "react-icons/fc";
+
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,7 +18,6 @@ function Signup() {
   const handleSignup = async (data) => {
     setError(null);
     try {
-      console.log(data);
       const user_data = await authService.createAccount(data);
       if (user_data) {
         const userdata = await authService.getCurrentUser();
@@ -38,7 +39,7 @@ function Signup() {
       {/* <div className="relative top-0 right-0">
         <Bg />
       </div> */}
-      <Company_tag className="hidden sm:block" />
+      <Company_tag className="hidden md:block" />
       <div className=" m-auto  ring-1 ring-slate-300 bg-white text-gray p-6  rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw]  inset-0 ">
         <div>
           <h2 className="font-bold text-3xl">Create Account</h2>
@@ -82,7 +83,17 @@ function Signup() {
                 required: true,
               })}
             />
+
             <Button type="submit">Sign up</Button>
+            <div
+              className="bg-slate-300 flex justify-center items-center gap-4 px-2 py-1 rounded-full mx-2 cursor-pointer"
+              onClick={() => {
+                authService.googleauth();
+              }}
+            >
+              <FcGoogle size={32} />
+              <p>Create account with Google</p>
+            </div>
           </div>
         </form>
       </div>
