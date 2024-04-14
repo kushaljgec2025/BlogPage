@@ -153,9 +153,11 @@ function Postform({ post }) {
                 className="rounded-3xl aspect-[2/1] object-cover  "
               />
             )}
-            <h1 className="absolute  bg-gray rounded-t-xl w-full ">
-              {!post.feature_img ? "No Image Uploaded" : ""}
-            </h1>
+            {post && (
+              <h1 className="absolute  bg-gray rounded-t-xl w-full ">
+                {!post.feature_img ? "No Image Uploaded" : ""}
+              </h1>
+            )}
           </div>
           <div className="shrink">
             <Select
