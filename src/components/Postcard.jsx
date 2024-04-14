@@ -9,7 +9,7 @@ import {
   AiOutlineUser,
   AiOutlineEye,
 } from "react-icons/ai";
-function Postcard({ $id, title, content, feature_img, userId }) {
+function Postcard({ $id, title, content, feature_img, userId, username }) {
   const navigate = useNavigate();
   const parsedContent = parse(content);
   console.log(userId, "userid");
@@ -63,7 +63,7 @@ function Postcard({ $id, title, content, feature_img, userId }) {
               <div className="flex justify-center items-center gap-2 ">
                 <AiOutlineUser className="border-2 border-blue text-blue rounded-full text-xl" />
 
-                <p className="text-blue">Author</p>
+                <p className="text-blue">{username || "Anonymus"}</p>
               </div>
             </button>
           </div>

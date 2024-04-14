@@ -33,6 +33,7 @@ function Postform({ post }) {
       const dbpost = await service.updatePost(post.$id, {
         ...data,
         feature_img: file ? file.$id : post.feature_img,
+        username: usedata.name,
       });
 
       if (dbpost) {
@@ -53,6 +54,7 @@ function Postform({ post }) {
         feature_img: data.feautureImg,
         status: data.status,
         userId: usedata.$id,
+        username: usedata.name,
         // Assuming 'usedata' is defined and contains '$id'
       });
       if (dbpost) navigate(`/post/${dbpost.$id}`);
@@ -105,28 +107,32 @@ function Postform({ post }) {
   }, [watch, setValue, slugTransform]);
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <div className="flex items-center md:flex-row flex-col w-full ">
-        <div className="flex flex-col basis-1/2 gap-[5vw] m-4 ">
-          <Input
-            label="Title"
-            placeholder="Enter your title"
-            {...register("title", {
-              required: true,
-            })}
-          />
-          <Input
-            label="Slug"
-            placeholder="Enter your slug"
-            {...register("slug", {
-              required: true,
-            })}
-            readOnly={true}
-            onInput={(e) => {
-              setValue("slug", slugTransform(e.currentTarget.value));
-              shouldValidate: true;
-            }}
-          />
-          <div className="text-left font-semibold">
+      <div className="flex items-center md:flex-row flex-col w-full  ">
+        <div className="flex  flex-col basis-1/2 justify-around h-[100vh]  p-2">
+          <div className="shrink">
+            <Input
+              label="Title"
+              placeholder="Enter your title"
+              {...register("title", {
+                required: true,
+              })}
+            />
+          </div>
+          <div className="shrink">
+            <Input
+              label="Slug"
+              placeholder="Enter your slug"
+              {...register("slug", {
+                required: true,
+              })}
+              readOnly={true}
+              onInput={(e) => {
+                setValue("slug", slugTransform(e.currentTarget.value));
+                shouldValidate: true;
+              }}
+            />
+          </div>
+          <div className="text-left shrink font-semibold ">
             <label className=" text-gray">Upload Feature Image</label>
             <input
               type="file"
@@ -135,20 +141,31 @@ function Postform({ post }) {
               className="  cursor-pointer w-full bg-slate-300 rounded-xl "
             />
           </div>
-          {post && (
-            <img
-              src={service.getFile(post.feature_img)}
-              alt={post.title}
-              className="rounded-3xl"
+          <div className="flex text-red-200 text-sm font-bold relative">
+            {post && (
+              <img
+                src={
+                  post.feature_img
+                    ? service.getFile(post.feature_img)
+                    : "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                }
+                alt={service.getFile(post.feature_img)}
+                className="rounded-3xl aspect-[2/1] object-cover  "
+              />
+            )}
+            <h1 className="absolute  bg-gray rounded-t-xl w-full ">
+              {!post.feature_img ? "No Image Uploaded" : ""}
+            </h1>
+          </div>
+          <div className="shrink">
+            <Select
+              label="Status"
+              options={["active", "inactive"]}
+              {...register("status", {
+                required: true,
+              })}
             />
-          )}
-          <Select
-            label="Status"
-            options={["active", "inactive"]}
-            {...register("status", {
-              required: true,
-            })}
-          />
+          </div>
         </div>
 
         <div className=" basis-1/2 m-4 ">

@@ -93,7 +93,7 @@ export default function Post() {
           <h1 className="text-left text-blue flex justify-start items-center gap-4  ">
             Author :
             <AiOutlineUser />
-            {/* {Author} */}
+            {post.username || "Anonymus"}
           </h1>
           <div className="sm:w-full text-left w-[70vw]">
             {parse(post.content)}

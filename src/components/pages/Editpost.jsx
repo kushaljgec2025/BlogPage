@@ -20,7 +20,11 @@ function Editpost() {
     }
   }, [slug, navigate]);
 
-  return <div>{!post ? <h1>Loading...</h1> : <Postform post={post} />}</div>;
+  return (
+    <div className="bg-white w-[100vw] md:w-full rounded-xl">
+      {!post ? <h1>Loading...</h1> : <Postform post={post} />}
+    </div>
+  );
 }
 
 export default Editpost;
