@@ -19,6 +19,8 @@ function Home() {
         console.log(error);
       });
   }, []);
+  console.log(posts);
+
   if (loading && Authstatus) return <div>Loading...</div>;
   if (posts.length === 0) {
     if (Authstatus) return <div>No Post Yet</div>;

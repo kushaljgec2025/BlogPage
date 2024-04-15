@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import service from "../appwrite/config";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,19 +8,22 @@ import {
   AiOutlineComment,
   AiOutlineUser,
   AiOutlineEye,
+  AiOutlineHeart,
 } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa6";
 function Postcard({
   $id,
   title,
   content,
   status,
+  like,
   feature_img,
   userId,
   username,
 }) {
   const navigate = useNavigate();
   const parsedContent = parse(content);
-
+  const [islike, setLike] = useState(true);
   const usedata = useSelector((state) => state.auth.userData);
   let firstPTagText = "";
   if (Array.isArray(parsedContent)) {
@@ -31,6 +34,20 @@ function Postcard({
       }
     }
   }
+  const handellike = () => {
+    setLike((islike) => !islike);
+
+    // service
+    //   .updatePost($id, {
+    //     like: like + 1,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
 
   return status === "active" || userId === usedata.$id ? (
     <>
@@ -81,20 +98,35 @@ function Postcard({
                 <div className="flex justify-center items-center gap-2 ">
                   <AiOutlineUser className="border-2 border-blue text-blue rounded-full text-xl" />
 
-                  <p className="text-blue text-xs">{username || "Anonymus"}</p>
+                  <p className="text-blue text-xs">
+                    {username.substring(0, 10) + "..." || "Anonymus"}
+                  </p>
                 </div>
               </button>
             </div>
             <div className="basis-1/3  flex gap-2 justify-around ">
+              <button className="btn text-xl bg-slate-300 p-2 rounded-md text-red-500 shadow-lg h-10 w-15 flex  items-center ">
+                <div
+                  className="hover:scale-110 duration-300"
+                  onClick={handellike}
+                >
+                  <FaHeart
+                    className={` ${islike ? "text-white" : "text-red-500"} `}
+                  />
+                </div>
+                <p className="text-xs ml-2  text-gray"> {0 + !islike || 0}</p>
+              </button>
               <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-15 flex  items-center ">
-                <AiOutlineLike />
-                <p className="text-xs "> {usedata.like || 0}</p>
+                <div className="hover:bg-blue hover:rounded-full p-1 hover:text-white hover:text-xl duration-500">
+                  <AiOutlineComment />
+                </div>
+                <p className="text-xs ml-2 text-gray"> {0}</p>
               </button>
-              <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-                <AiOutlineComment />
-              </button>
-              <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-                <AiOutlineEye />
+              <button className="btn text-xl bg-slate-300 p-2 rounded-md text-slate-700 shadow-lg h-10 w-15 flex  items-center ">
+                <div>
+                  <AiOutlineEye />
+                </div>
+                <p className="text-xs ml-2 text-gray"> {0}</p>
               </button>
             </div>
           </div>

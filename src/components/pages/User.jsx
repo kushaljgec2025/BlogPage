@@ -8,6 +8,8 @@ import { FaUserFriends } from "react-icons/fa";
 import { RiUserFollowFill } from "react-icons/ri";
 import service from "../../appwrite/config";
 import { Postcard, Container } from "../index";
+import Logoutbtn from "../Header/Logoutbtn";
+
 function User() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
@@ -49,6 +51,11 @@ function User() {
           <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
         </div>
       </div>
+      {userData && (
+        <li className="">
+          <Logoutbtn />
+        </li>
+      )}
     </div>
   );
 }

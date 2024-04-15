@@ -70,11 +70,6 @@ export default function Header() {
                 </NavLink>
               ) : null;
             })}
-            {authstatus && (
-              <li className="">
-                <Logoutbtn />
-              </li>
-            )}
           </ul>
         </div>
       </nav>

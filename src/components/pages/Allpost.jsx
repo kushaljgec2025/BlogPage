@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import service from "../../appwrite/config";
-import { Postcard, Container } from "../index";
+import { Postcard, Container, Company_tag } from "../index";
+import { useSelector } from "react-redux";
 
-function Allpost() {
+function Allposts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // const [Authstatus, setAuthstatus] = useState(false);
+  const Authstatus = useSelector((state) => state.auth.status);
   useEffect(() => {
     service
       .getPosts()
       .then((response) => {
         setPosts(response.documents);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  if (loading && Authstatus) return <div>Loading...</div>;
+  if (posts.length === 0) {
+    if (Authstatus) return <div>No Post Yet</div>;
+    return (
+      <div>
+        <Company_tag />
+      </div>
+    );
+  }
   return (
-    <Container className="">
-      <div className="flex sm:flex-row flex-col sm:flex-wrap ">
-        {posts.map((post) => (
-          <div key={post.$id} className="sm:w-[20vw]">
-            <Postcard {...post} />
-          </div>
+    <div className="container ">
+      <div className="flex flex-col justify-center items-center gap-10">
+        {posts?.map((post) => (
+          <Postcard key={post.$id} {...post} />
         ))}
       </div>
-    </Container>
+    </div>
   );
 }
 
-export default Allpost;
+export default Allposts;

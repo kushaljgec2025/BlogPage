@@ -24,11 +24,12 @@ function LogoutBtn() {
   };
 
   return (
-    <div className=" rounded-full  bg-red-400 hover:bg-red-500 duration-300 p-3 font-bold cursor-pointer   ">
-      <Link
-        onClick={handleLogout}
-        className=" flex justify-center items-center"
-      >
+    <div
+      className="   bg-red-400 hover:bg-red-500 duration-300 px-6 py-2 rounded-md my-2 font-bold cursor-pointer   "
+      onClick={handleLogout}
+    >
+      <Link className=" flex justify-center items-center gap-4">
+        Logout
         <FiLogOut className="text-xl  " />
       </Link>
     </div>
