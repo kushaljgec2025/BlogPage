@@ -92,7 +92,7 @@ function Postcard({
               </span>
             </div>
           </div>
-          <div className="flex flex-row   justify-between ">
+          <div className="flex sm:flex-row flex-col  gap-4 justify-between ">
             <div>
               <button className="flex flex-col  gap-2 bg-slate-300 p-2 rounded-md shadow-lg ">
                 <div className="flex justify-center items-center gap-2 ">
@@ -104,7 +104,7 @@ function Postcard({
                 </div>
               </button>
             </div>
-            <div className="basis-1/3  flex gap-2 justify-around ">
+            <div className="basis-1/3  flex gap-2 justify-evenly  ">
               <button className="btn text-xl bg-slate-300 p-2 rounded-md text-red-500 shadow-lg h-10 w-15 flex  items-center ">
                 <div
                   className="hover:scale-110 duration-300"
