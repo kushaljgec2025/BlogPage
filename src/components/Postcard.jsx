@@ -22,18 +22,10 @@ function Postcard({
   username,
 }) {
   const navigate = useNavigate();
-  const parsedContent = parse(content);
+
   const [islike, setLike] = useState(true);
   const usedata = useSelector((state) => state.auth.userData);
-  let firstPTagText = "";
-  if (Array.isArray(parsedContent)) {
-    for (let i = 0; i < parsedContent.length; i += 2) {
-      if (parsedContent[i].type === "p") {
-        firstPTagText = parsedContent[i].props.children;
-        break;
-      }
-    }
-  }
+
   const handellike = () => {
     setLike((islike) => !islike);
 
@@ -74,14 +66,13 @@ function Postcard({
             />
           </div>
         </Link>
-        <div className=" md:h-[20vw] flex flex-col justify-between">
+        <div className=" md:h-[20vw] basis-3/4 flex flex-col justify-between">
           <div className="flex flex-col   text-start">
             <h2 className="text-xl font-bold text-blue">{title}</h2>
             {/* Display the text content of the first <p> tag */}
             <div className="text-md text-gray text-wrap ">
-              {firstPTagText.substring(0, 200) ||
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi temporibus ipsam illo optio alias incidunt doloribus quia quae vero hic fugiat nesciunt, sunt illum, facilis aliquid maxime nam quibusdam magnam?"}
-              ...
+              <p className="line-clamp-4">{parse(content)}</p>
+
               <span
                 className="text-blue cursor-pointer"
                 onClick={() => {

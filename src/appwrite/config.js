@@ -108,6 +108,21 @@ export class Service {
             console.log(e);
         }
     }
+    async getPostswithquery({ query }) {
+        try {
+            const result = await this.databases.listDocuments(
+                conf.appWriteDatabaseId,
+                conf.appWriteCollectionId,
+                // [Query.equal("status", "active")]
+                // [Query.equal(...query)]
+                [Query.equal("userId", "6612c0782339bbc761a7")]
+            );
+
+            return result;
+        } catch (e) {
+            console.log(e);
+        }
+    }
     async uploadFile(file) {
         try {
             const result = await this.bucket.createFile(

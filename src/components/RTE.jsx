@@ -3,6 +3,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useDispatch } from "react-redux";
 import { Controller } from "react-hook-form";
 export default function RTE({ name, control, label, defaultValue = "" }) {
+  const [loading, setLoading] = React.useState(false);
   return (
     <div className="text-left font-bold w-full ">
       {label && <label className="text-gray">{label}</label>}
@@ -16,7 +17,7 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
             init={{
               initialValue: { defaultValue },
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 "image",
 
@@ -57,12 +58,13 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
                 "wordcount",
 
                 "anchor",
+                "textcolor",
               ],
               toolbar:
                 "undo redo | formatselect | " +
-                "bold italic backcolor | alignleft aligncenter " +
+                "bold italic backcolor |forecolor backcolor| alignleft aligncenter | image | code |  " +
                 "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
+                "removeformat | help |preview | anchor ",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
