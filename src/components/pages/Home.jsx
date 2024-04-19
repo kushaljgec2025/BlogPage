@@ -20,25 +20,26 @@ function Home() {
       });
   }, []);
   console.log(posts);
-
-  if (loading && Authstatus) return <div>Loading...</div>;
-  if (posts.length === 0) {
-    if (Authstatus) return <div>No Post Yet</div>;
+  if (!Authstatus)
     return (
       <div>
         <Company_tag />
       </div>
     );
+  if (posts.length === 0 && Authstatus) {
+    return <div>No Post Yet</div>;
   }
-  return (
-    <div className="container ">
-      <div className="flex flex-col justify-center items-center gap-10">
-        {posts?.map((post) => (
-          <Postcard key={post.$id} {...post} />
-        ))}
+  if (loading && Authstatus) return <div>Loading...</div>;
+  else
+    return (
+      <div className="container ">
+        <div className="flex flex-col justify-center items-center gap-10">
+          {posts?.map((post) => (
+            <Postcard key={post?.$id} {...post} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Home;

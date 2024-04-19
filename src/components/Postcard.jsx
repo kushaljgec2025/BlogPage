@@ -41,7 +41,7 @@ function Postcard({
     //   });
   };
 
-  return status === "active" || userId === usedata.$id ? (
+  return status === "active" || userId === usedata?.$id ? (
     <>
       <div
         className={`${
