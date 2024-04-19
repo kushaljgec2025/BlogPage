@@ -38,17 +38,14 @@ function User() {
           </div>
         </div>
         <div className="flex flex-wrap gap-4 justify-around ">
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
-          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl"></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
+          <div className="w-40 h-40 bg-slate-200 text-gray rounded-xl grow-1 shrink-0 "></div>
         </div>
       </div>
       {userData && (

@@ -114,7 +114,7 @@ function Postcard({
                     className={` ${islike ? "text-white" : "text-red-500"} `}
                   />
                 </div>
-                <p className="text-xs ml-2  text-gray"> {0 + !islike || 0}</p>
+                <p className="text-xs ml-2  text-gray"> {0 + !islike}</p>
               </button>
               <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-15 flex  items-center ">
                 <div className="hover:bg-blue hover:rounded-full p-1 hover:text-white hover:text-xl duration-500">

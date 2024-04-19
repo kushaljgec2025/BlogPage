@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { TbEditCircle } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
-
+import { FaHeart } from "react-icons/fa6";
 import {
   AiOutlineLike,
   AiOutlineComment,
@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 
 export default function Post() {
+  const [like, setLike] = useState(true);
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(null);
   const [imghref, setImghref] = useState(null);
@@ -34,6 +35,7 @@ export default function Post() {
         } else navigate("/");
       });
     } else navigate("/");
+    getfile();
   }, [slug, navigate]);
 
   const deletePost = () => {
@@ -56,7 +58,21 @@ export default function Post() {
       console.log(err);
     }
   };
-  getfile();
+
+  const handellike = () => {
+    setLike((islike) => !islike);
+    console.log(like);
+    // service
+    //   .updatePost($id, {
+    //     like: like + 1,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
   return post ? (
     <div className="py-8">
       <div>
@@ -98,15 +114,31 @@ export default function Post() {
           <div className="sm:w-full text-left w-[70vw]">
             {parse(post.content)}
           </div>
-          <div className="basis-1/3  flex gap-2 justify-around  rounded-lg mt-4">
-            <button className="btn text-xl  bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center ">
-              <AiOutlineLike />
+          <div className="basis-1/3  flex gap-2 justify-evenly  ">
+            <button
+              className="btn text-xl bg-slate-300 p-2 rounded-md text-red-500 shadow-lg h-10 w-15 flex  items-center "
+              onClick={() => {
+                handellike();
+              }}
+            >
+              <div className="hover:scale-110 duration-300">
+                <FaHeart
+                  className={` ${like ? "text-white" : "text-red-500"} `}
+                />
+              </div>
+              <p className="text-xs ml-2  text-gray"> {0 + !like || 0}</p>
             </button>
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-              <AiOutlineComment />
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-15 flex  items-center ">
+              <div className="hover:bg-blue hover:rounded-full p-1 hover:text-white hover:text-xl duration-500">
+                <AiOutlineComment />
+              </div>
+              <p className="text-xs ml-2 text-gray"> {0}</p>
             </button>
-            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-blue shadow-lg h-10 w-10 grid place-content-center">
-              <AiOutlineEye />
+            <button className="btn text-xl bg-slate-300 p-2 rounded-md text-slate-700 shadow-lg h-10 w-15 flex  items-center ">
+              <div>
+                <AiOutlineEye />
+              </div>
+              <p className="text-xs ml-2 text-gray"> {0}</p>
             </button>
           </div>
         </div>
