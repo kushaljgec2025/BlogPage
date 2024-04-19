@@ -2,7 +2,7 @@
 import conf from '../conf/conf.js';
 
 import { Client, Account, ID, Databases, Storage, Query } from "appwrite";
-
+import { toast } from "react-toastify";
 
 export class Service {
     client = new Client();
@@ -60,6 +60,7 @@ export class Service {
 
                 }
             )
+
 
             return result;
         }

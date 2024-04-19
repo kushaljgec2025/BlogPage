@@ -7,6 +7,8 @@ import { Button, Input } from "../components/index";
 import { useForm } from "react-hook-form";
 import { Company_tag } from "../components/index";
 import { FcGoogle } from "react-icons/fc";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,21 +26,22 @@ function Login() {
         userdata
           ? dispatch(authLogin({ userData: userdata }))
           : setError("User data not found");
+        toast("Successfully logged in", { type: "success" });
         // navigate("/login/home");
       }
     } catch (error) {
       setError(error.message);
+      toast(error.message, { type: "error" });
     }
   };
   return (
     <div className="flex flex-row flex-wrap-reverse ">
+      <ToastContainer autoClose={4000} />
       <Company_tag className="hidden md:block" />
       <div className="ring-1 ring-slate-300 p-6 bg-white text-gray rounded-lg  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-[30vw] m-auto ">
         <div>
           <h2 className="font-bold text-3xl">Log in</h2>
         </div>
-
-        {error && <p className="text-red-500">{error}</p>}
 
         <form onSubmit={handleSubmit(login)}>
           <div>

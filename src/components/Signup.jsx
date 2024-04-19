@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { Bg } from "../components/index";
 import { Company_tag } from "../components/index";
 import { FcGoogle } from "react-icons/fc";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -28,7 +30,9 @@ function Signup() {
           setError("User data not found");
         }
       }
+      toast("Suncessfully created account", { type: "success" });
     } catch (error) {
+      toast(error.message, { type: "error" });
       setError(error.message);
     }
   };
@@ -36,6 +40,7 @@ function Signup() {
   return (
     <div className="flex flex-row flex-wrap-reverse ">
       {" "}
+      <ToastContainer autoClose={4000} />
       {/* <div className="relative top-0 right-0">
         <Bg />
       </div> */}
@@ -52,7 +57,6 @@ function Signup() {
           </Link>
         </p>
 
-        {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit(handleSignup)}>
           <div>
             <Input

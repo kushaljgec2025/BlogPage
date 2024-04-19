@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { IoMdPaperPlane } from "react-icons/io";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Postform({ post }) {
   const [uploaded, setUploaded] = useState(false);
@@ -107,6 +110,7 @@ function Postform({ post }) {
   }, [watch, setValue, slugTransform]);
   return (
     <form onSubmit={handleSubmit(submit)}>
+      <ToastContainer autoclose={4000} />
       <div className="flex items-center md:flex-row flex-col w-full  ">
         <div className="flex  flex-col basis-1/2 justify-around h-[100vh]  p-2">
           <div className="shrink">
