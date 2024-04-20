@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 import {
   FaXTwitter,
@@ -37,6 +38,9 @@ function Footer() {
           className="flex justify-center items-center gap-2 bg-white text-gray p-2 rounded-lg hover:bg-slate-500 hover:text-white duration-300"
         >
           Show your love here
+          <span>
+            <FaStar className="text-yellow-400" />
+          </span>
           <span>
             <FaCodeBranch />
           </span>
