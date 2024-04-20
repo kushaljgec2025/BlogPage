@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Loader(props) {
   return (
-    <div className="w-full flex justify-center items-center flex-col ">
+    <div className="w-full h-screen flex justify-center items-center flex-col ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="8em"
