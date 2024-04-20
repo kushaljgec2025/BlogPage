@@ -46,14 +46,14 @@ function Postcard({
       <div
         className={`${
           status === "active" ? "bg-white" : "bg-slate-300"
-        } rounded-xl w-full  text-center   flex justify-start items-start md:flex-row flex-col gap-6 p-4`}
+        } rounded-xl w-full  text-center   flex justify-start items-start md:flex-row flex-col gap-6 p-4  shadow-xl`}
       >
         {status === "inactive" && (
           <h1 className="text-gray font-bold absolute bg-slate-300 rounded-br-lg p-2 font-mono border-b-2 shadow-xl">
             Inactive post
           </h1>
         )}
-        <Link to={`/post/${$id}`} className="md:max-w-[20vw] w-full">
+        <Link to={`/post/${$id}`} className="md:max-w-[20vw] w-full basis-1/5">
           <div className="w-full group">
             <img
               src={
@@ -66,7 +66,7 @@ function Postcard({
             />
           </div>
         </Link>
-        <div className=" md:h-[20vw] basis-3/4 flex flex-col justify-between">
+        <div className="  basis-4/5 flex flex-col justify-between">
           <div className="flex flex-col   text-start">
             <h2 className="text-xl font-bold text-blue">{title}</h2>
             {/* Display the text content of the first <p> tag */}

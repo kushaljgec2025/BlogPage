@@ -16,7 +16,7 @@ function Footer() {
   }
   return (
     <div className="footer w-full  mt-10 bg-gray bg-opacity-25 flex md:flex-row flex-col gap-2  justify-around items-center p-4  backdrop-blur-md transparent rounded-t-lg">
-      <div className="flex justify-around gap-4 bg-white p-2 rounded-lg text-gray w-[60vw]">
+      <div className="flex justify-around gap-4 bg-white p-2 rounded-lg text-gray ">
         <Link to="https://github.com/kushaljgec2025" className=" text-xl">
           <FaGithub />
         </Link>

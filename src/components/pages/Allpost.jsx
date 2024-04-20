@@ -31,7 +31,7 @@ function Allposts() {
   }
   return (
     <div className="container ">
-      <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-6">
         {posts?.map((post) => (
           <Postcard key={post.$id} {...post} />
         ))}
