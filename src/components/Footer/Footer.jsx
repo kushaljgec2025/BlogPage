@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
 import {
   FaXTwitter,
   FaGithub,
@@ -10,6 +10,10 @@ import {
   FaCodeBranch,
 } from "react-icons/fa6";
 function Footer() {
+  const Authstatus = useSelector((state) => state.auth.status);
+  {
+    if (!Authstatus) return null;
+  }
   return (
     <div className="footer w-full  mt-10 bg-gray bg-opacity-25 flex justify-around items-center p-4  backdrop-blur-md transparent rounded-t-lg">
       <p>
