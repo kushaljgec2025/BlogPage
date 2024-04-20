@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import service from "../../appwrite/config";
 import { Postcard, Container, Company_tag } from "../index";
 import { useSelector } from "react-redux";
-
+import Loader from "../Loader";
 function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,11 +26,16 @@ function Home() {
         <Company_tag />
       </div>
     );
+
+  if (loading && Authstatus)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   if (posts.length === 0 && Authstatus) {
     return <div>No Post Yet</div>;
-  }
-  if (loading && Authstatus) return <div>Loading...</div>;
-  else
+  } else
     return (
       <div className="container ">
         <div className="flex flex-col justify-center items-center gap-10">

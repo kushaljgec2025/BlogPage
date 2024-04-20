@@ -9,7 +9,7 @@ import { RiUserFollowFill } from "react-icons/ri";
 import service from "../../appwrite/config";
 import { Postcard, Container } from "../index";
 import Logoutbtn from "../Header/Logoutbtn";
-
+import Loader from "../Loader";
 function User() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
@@ -35,7 +35,12 @@ function User() {
     // console.log(user_posts);
   };
   // console.log(userData);
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   if (!loading)
     return (
       <div className="w-[80vw] flex flex-col justify-center items-center">

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { TbEditCircle } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
-
+import Loder from "../Loader";
 import {
   AiOutlineLike,
   AiOutlineComment,
@@ -30,12 +30,18 @@ export default function Post() {
 
   useEffect(() => {
     if (slug) {
-      service.getPost(slug).then((post) => {
-        if (post) {
-          setPost(post);
-          getfile(post?.feature_img);
-        } else navigate("/");
-      });
+      try {
+        service.getPost(slug).then((post) => {
+          if (post) {
+            setLoading(false);
+            setPost(post);
+
+            getfile(post?.feature_img);
+          } else navigate("/");
+        });
+      } catch (err) {
+        console.log(err);
+      }
     } else navigate("/");
   }, [slug, navigate]);
 
@@ -51,7 +57,6 @@ export default function Post() {
     try {
       if (img_id) {
         const file = await service.getFileOriginal(img_id);
-        setLoading(false);
 
         setImghref(file.href);
       }
@@ -62,18 +67,23 @@ export default function Post() {
   const handlelike = () => {
     setLike((like) => !like);
   };
-
-  return post ? (
-    <div className="py-8">
+  if (loading)
+    return (
       <div>
-        <div className="md:w-full w-[90vw] flex justify-center mb-4 relative border bg-white backdrop-blur-md bg-opacity-20 rounded-xl p-2">
+        <Loder />
+      </div>
+    );
+  return post ? (
+    <div className="mb-4 w-full ">
+      <div className="flex flex-col justify-center items-center">
+        <div className="md:w-full w-[90vw] flex justify-center mb-8 relative border bg-white backdrop-blur-md bg-opacity-20 rounded-xl p-2">
           <img
             src={
               imghref ||
               "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             }
             alt={post.title}
-            className="rounded-3xl aspect-[7/4] object-cover w-full h-full"
+            className="rounded-xl aspect-[7/4] object-cover w-full h-full"
           />
 
           {/* <h1>{service.getFileOriginal(post.feature_img)}</h1> */}

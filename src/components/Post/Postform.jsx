@@ -9,10 +9,16 @@ import { IoMdPaperPlane } from "react-icons/io";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CiImageOn } from "react-icons/ci";
+import { useDropzone } from "react-dropzone";
 
 function Postform({ post }) {
+  const { getRootProps, getInputProps } = useDropzone();
   const [uploaded, setUploaded] = useState(false);
-
+  const [filename, setFilename] = useState({
+    name: "No Image Uploaded",
+    size: null,
+  });
   const navigate = useNavigate();
   const usedata = useSelector((state) => state.auth.userData);
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -63,7 +69,11 @@ function Postform({ post }) {
       if (dbpost) navigate(`/post/${dbpost.$id}`);
     }
   };
-
+  const img_uploaded = useCallback(() => {
+    if (uploaded) {
+      toast.success("Image Uploaded Successfully");
+    }
+  }, [filename, uploaded]);
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string") {
       // Trim and convert to lowercase
@@ -109,9 +119,10 @@ function Postform({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, setValue, slugTransform]);
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form onSubmit={handleSubmit(submit)} className="w-full m-2">
+      <h1 className="text-3xl font-bold text-blue ">SPREAD YOUR THOUGHTS</h1>
       <ToastContainer autoclose={4000} />
-      <div className="flex items-center md:flex-row flex-col w-full  ">
+      <div className="flex items-center md:flex-row flex-col w-full  gap-2">
         <div className="flex  flex-col basis-1/2 justify-around h-[100vh]  p-2">
           <div className="shrink">
             <Input
@@ -136,15 +147,59 @@ function Postform({ post }) {
               }}
             />
           </div>
-          <div className="text-left shrink font-semibold ">
-            <label className=" text-gray">Upload Feature Image</label>
+          <div className="text-left shrink font-semibold  relative  flex justify-center items-center py-6 rounded-lg cursor-pointer border-dashed border-2 border-gray">
+            <label
+              className=" text-gray flex justify-center space-y-2 items-center cursor-pointer gap-4  "
+              htmlFor="img_uploader"
+            >
+              <CiImageOn className="text-gray cursor-pointer  " size={80} />
+              <div className="text-gray bg-slate-300 p-2 rounded-md">
+                <h1 className="text-md">Upload Feature Image</h1>
+                <p className="text-xs font-light ">
+                  JPG,JPEG,GIF,PNG , <span>&#60;</span>5MB
+                </p>
+                <p
+                  id="file-chosen"
+                  className="text-blue  text-sm line-clamp-1 "
+                >
+                  {filename.name}{" "}
+                </p>
+                <span
+                  className={`${
+                    filename.size >= 5 ? "text-red-500" : "text-gray"
+                  }`}
+                >
+                  {filename.size}
+                </span>
+              </div>
+            </label>
+            <p className="absolute top-0 text-gray text-sm font-light">
+              Drag and Drop here
+            </p>
+            {/* <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            </div> */}
+
             <input
               type="file"
               accept="image/*"
               {...register("img")}
-              className="  cursor-pointer w-full bg-slate-300 rounded-xl "
+              id="img_uploader"
+              className="  cursor-pointer w-full bg-slate-300 rounded-xl hidden "
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                e.target.files[0] ? setUploaded(true) : setUploaded(false);
+                const selectedFile = e.target.files[0];
+                setFilename({
+                  name: selectedFile.name,
+                  size: (selectedFile.size / 2 ** 20).toFixed(2) + "MB",
+                });
+                img_uploaded();
+              }}
             />
           </div>
+
           <div className="flex text-red-200 text-sm font-bold relative">
             {post && (
               <img

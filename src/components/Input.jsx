@@ -18,7 +18,7 @@ function Input({ label, type = "text", className = "", ...props }, ref) {
           ref={ref}
           {...props}
           id={inputId}
-          className={`shadow-sm focus:ring-blue focus:border-blue  px-4 py-2 block w-full sm:text-sm bg-slate-200 text-gray rounded-md ${className}`}
+          className={`shadow-sm focus:ring-blue focus:border-blue  px-4 py-2 block w-full sm:text-sm bg-slate-300 text-black rounded-md ${className}`}
         />
         {type === "password" && (
           <button
