@@ -119,11 +119,11 @@ function Postform({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, setValue, slugTransform]);
   return (
-    <form onSubmit={handleSubmit(submit)} className="w-full m-2">
+    <form onSubmit={handleSubmit(submit)} className="w-full space-y-2 md:p-4">
       <h1 className="text-3xl font-bold text-blue ">SPREAD YOUR THOUGHTS</h1>
       <ToastContainer autoclose={4000} />
       <div className="flex items-center md:flex-row flex-col w-full  gap-2">
-        <div className="flex  flex-col basis-1/2 justify-around h-[100vh]  p-2">
+        <div className="flex  flex-col basis-1/2 justify-around h-[100vh] space-y-2  ">
           <div className="shrink">
             <Input
               label="Title"
@@ -149,7 +149,7 @@ function Postform({ post }) {
           </div>
           <div className="text-left shrink font-semibold  relative  flex justify-center items-center py-6 rounded-lg cursor-pointer border-dashed border-2 border-gray">
             <label
-              className=" text-gray flex justify-center space-y-2 items-center cursor-pointer gap-4  "
+              className=" text-gray flex justify-center  items-center cursor-pointer gap-4 p-2  "
               htmlFor="img_uploader"
             >
               <CiImageOn className="text-gray cursor-pointer  " size={80} />

@@ -33,7 +33,7 @@ function Layout() {
       <div className="hero flex flex-col items-center w-full min-h-screen">
         <Header />
         <div className="flex flex-col w-[80%] h-full mt-[12vh] lg:mt-[16vh] justify-normal items-center  ">
-          <main className=" w-full ">
+          <main className=" w-full flex justify-center items-center md:block ">
             <Outlet />
           </main>
         </div>

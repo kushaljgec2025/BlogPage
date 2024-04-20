@@ -15,11 +15,8 @@ function Footer() {
     if (!Authstatus) return null;
   }
   return (
-    <div className="footer w-full  mt-10 bg-gray bg-opacity-25 flex justify-around items-center p-4  backdrop-blur-md transparent rounded-t-lg">
-      <p>
-        <span>&#169;</span> Copyright 2024 kg_codex All rights reserved
-      </p>
-      <div className="flex gap-4 bg-white p-2 rounded-lg text-gray">
+    <div className="footer w-full  mt-10 bg-gray bg-opacity-25 flex md:flex-row flex-col gap-2  justify-around items-center p-4  backdrop-blur-md transparent rounded-t-lg">
+      <div className="flex justify-around gap-4 bg-white p-2 rounded-lg text-gray w-[60vw]">
         <Link to="https://github.com/kushaljgec2025" className=" text-xl">
           <FaGithub />
         </Link>
@@ -49,8 +46,10 @@ function Footer() {
             <FaCodeBranch />
           </span>
         </Link>
-        <div></div>
       </div>
+      <p>
+        <span>&#169;</span> Copyright 2024 kg_codex All rights reserved
+      </p>
     </div>
   );
 }
