@@ -116,7 +116,7 @@ export class Service {
                 conf.appWriteCollectionId,
                 // [Query.equal("status", "active")]
                 // [Query.equal(...query)]
-                [Query.equal("userId", "6612c0782339bbc761a7")]
+                [Query.equal(...query)]
             );
 
             return result;

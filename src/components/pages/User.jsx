@@ -22,9 +22,12 @@ function User() {
   }, []);
   const get_User_posts = async () => {
     try {
+      console.log(userData.$id);
+
       const user_posts = await service.getPostswithquery({
         query: ["userId", userData.$id],
       });
+      console.log(user_posts);
       setUserPosts(user_posts.documents);
       setPost_no(user_posts.total);
     } catch (e) {
