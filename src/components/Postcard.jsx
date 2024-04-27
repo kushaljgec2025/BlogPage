@@ -71,7 +71,7 @@ function Postcard({
             <h2 className="text-xl font-bold text-blue">{title}</h2>
             {/* Display the text content of the first <p> tag */}
             <div className="text-md text-gray text-wrap ">
-              <p className="line-clamp-4">{parse(content)}</p>
+              <p className="line-clamp-4 text-justify">{parse(content)}</p>
 
               <span
                 className="text-blue cursor-pointer"
