@@ -111,7 +111,7 @@ export default function Post() {
             <AiOutlineUser />
             {post.username || "Anonymus"}
           </h1>
-          <div className="sm:w-full text-left w-[70vw] text-justify">
+          <div className="sm:w-full w-[70vw] text-justify">
             {parse(post.content)}
           </div>
           <div className="basis-1/3  flex gap-2 justify-evenly  ">
