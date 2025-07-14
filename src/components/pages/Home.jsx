@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import service from "../../appwrite/config";
-import { Postcard, Container, Company_tag } from "../index";
+import { Postcard, Container, Company_tag, Card } from "../index";
 import { useSelector } from "react-redux";
 import Loader from "../Loader";
 function Home() {
@@ -38,7 +38,6 @@ function Home() {
   } else
     return (
       <div className="container ">
-      
         <div className="flex flex-col justify-center items-center gap-10">
           {posts?.map((post) => (
             <Postcard key={post?.$id} {...post} />

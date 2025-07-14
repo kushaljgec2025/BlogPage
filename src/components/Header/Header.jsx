@@ -42,7 +42,7 @@ export default function Header() {
     <Container
       className={`backdrop-filter backdrop-blur-md bg-opacity-10 fixed  top-0 left-0  z-10`}
     >
-      <nav className="flex w-full items-center justify-between  py-4">
+      <nav className="flex w-full items-center justify-between p-2 ">
         <div className={` justify-between sm:flex ${!isOpen ? "" : "hidden"}`}>
           <Link to="/" className="text-2xl font-bold text-gray-800">
             <Logo />

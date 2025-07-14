@@ -5,7 +5,7 @@ import authService from "../appwrite/auth";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input } from "../components/index";
 import { useForm } from "react-hook-form";
-import { Company_tag } from "../components/index";
+import { Company_tag, Card } from "../components/index";
 import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

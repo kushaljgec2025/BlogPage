@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 .hero {
-  background-image: url("https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url("../img/hero.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; /* Added background-position property */
 }
 
 #root {
@@ -36,3 +36,32 @@
 .read-the-docs {
   color: #888;
 }
+.card {
+  height: 320px;
+  width: 400px;
+  background: rgba(255, 255, 255, 1);
+  margin: 40px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  height: 180%;
+  width: 180%;
+  background: radial-gradient(rgb(0, 120, 104), transparent, transparent);
+}
+
+/* .card::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: -1;
+} */

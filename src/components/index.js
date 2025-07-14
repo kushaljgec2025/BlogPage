@@ -13,7 +13,8 @@ import Select from "./Select"
 import Authlayout from './Authlayout';
 import Company_tag from './Company_tag';
 import Bg from './Bg';
+import Card from './Card';
 
 
 
-export { Header, Footer, Container, Logoutbtn, Button, Input, RTE, Select, Login, Signup, Postfrom, Postcard, Authlayout, Bg, Company_tag };
+export { Header, Footer, Container, Logoutbtn, Button, Input, RTE, Select, Login, Signup, Postfrom, Postcard, Authlayout, Bg, Company_tag, Card };
