@@ -49,7 +49,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="sm:hidden block">
-          <Hamburger toggled={isOpen} toggle={setOpen} />
+          <Hamburger toggled={isOpen} toggle={setOpen} color="#475569" />
         </div>
         <div
           className={`sm:w-[50vw]  ${isOpen ? "w-full " : " hidden"} sm:block`}
