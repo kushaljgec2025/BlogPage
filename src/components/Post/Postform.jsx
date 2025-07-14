@@ -49,6 +49,7 @@ function Postform({ post }) {
         navigate(`/post/${dbpost.$id}`);
       }
     } else {
+      console.log(data);
       const file = data.img[0] ? await service.uploadFile(data.img[0]) : null;
       if (file) {
         const fileid = file.$id;
@@ -70,9 +71,7 @@ function Postform({ post }) {
     }
   };
   const img_uploaded = useCallback(() => {
-    if (uploaded) {
-      toast.success("Image Uploaded Successfully");
-    }
+    toast.success("Image Uploaded Successfully");
   }, [filename, uploaded]);
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string") {
@@ -184,19 +183,32 @@ function Postform({ post }) {
             <input
               type="file"
               accept="image/*"
-              {...register("img")}
               id="img_uploader"
-              className="  cursor-pointer w-full bg-slate-300 rounded-xl hidden "
-              onChange={(e) => {
-                console.log(e.target.files[0]);
-                e.target.files[0] ? setUploaded(true) : setUploaded(false);
-                const selectedFile = e.target.files[0];
-                setFilename({
-                  name: selectedFile.name,
-                  size: (selectedFile.size / 2 ** 20).toFixed(2) + "MB",
-                });
-                img_uploaded();
-              }}
+              className="cursor-pointer w-full bg-slate-300 rounded-xl hidden"
+              {...register("img", {
+                required: true,
+                validate: {
+                  lessThan5MB: (files) =>
+                    files[0]?.size < 5 * 1024 * 1024 ||
+                    "File must be less than 5MB",
+                },
+                onChange: (e) => {
+                  const file = e.target.files[0];
+
+                  if (file) {
+                    setUploaded(true);
+                    setFilename({
+                      name: file.name,
+                      size: (file.size / 2 ** 20).toFixed(2) + "MB",
+                    });
+                    img_uploaded();
+                  } else {
+                    setUploaded(false);
+                  }
+
+                  return e; // Important: return event for React Hook Form to store the file
+                },
+              })}
             />
           </div>
 

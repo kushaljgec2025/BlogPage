@@ -22,6 +22,7 @@ function Postcard({
   username,
 }) {
   const navigate = useNavigate();
+  const img_file = service.getFile(feature_img);
 
   const [islike, setLike] = useState(true);
   const usedata = useSelector((state) => state.auth.userData);
@@ -58,8 +59,8 @@ function Postcard({
             <img
               src={
                 feature_img
-                  ? service.getFile(feature_img)
-                  : "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  ? img_file.href
+                  : "https://images.pexels.com/photos/5428833/pexels-photo-5428833.jpeg"
               }
               alt={title}
               className="  w-full group aspect-square object-cover rounded-xl"

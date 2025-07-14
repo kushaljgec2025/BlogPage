@@ -57,7 +57,7 @@ export default function Post() {
     try {
       if (img_id) {
         const file = await service.getFileOriginal(img_id);
-
+        console.log(file);
         setImghref(file.href);
       }
     } catch (err) {
@@ -80,7 +80,7 @@ export default function Post() {
           <img
             src={
               imghref ||
-              "https://images.pexels.com/photos/372748/pexels-photo-372748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              "https://images.pexels.com/photos/5428833/pexels-photo-5428833.jpeg"
             }
             alt={post.title}
             className="rounded-xl aspect-[7/4] object-cover w-full h-full"
